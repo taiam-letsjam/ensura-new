@@ -1,0 +1,73 @@
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(1.25rem, 2.5vw, 2rem);
+  margin-top: clamp(2.5rem, 5vw, 4rem);
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.photo {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border-radius: var(--radius-lg);
+  margin-bottom: 1.1rem;
+  background: var(--color-light-gray);
+  object-fit: cover;
+  /* Bias slightly toward the top so faces stay well framed in the square crop */
+  object-position: center 20%;
+  display: block;
+  transition: transform var(--transition);
+}
+.card:hover .photo {
+  transform: translateY(-4px);
+}
+
+/* Body Large, semibold (member name) */
+.name {
+  font-family: var(--font-body);
+  font-weight: var(--w-semibold);
+  font-size: var(--fs-body-lg);
+  line-height: var(--lh-body-lg);
+  letter-spacing: 0;
+}
+/* Body Small (role) */
+.title {
+  font-size: var(--fs-body-sm);
+  line-height: var(--lh-body-sm);
+  color: var(--text-muted);
+  margin-top: 0.2rem;
+  padding-bottom: 0.85rem;
+  border-bottom: 1px solid var(--border);
+  width: 100%;
+}
+
+.linkedin {
+  display: inline-grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  margin-top: 0.85rem;
+  color: var(--color-gray);
+  transition: color var(--transition);
+}
+.linkedin:hover {
+  color: var(--color-blue);
+}
+
+@media (max-width: 860px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 520px) {
+  .grid {
+    grid-template-columns: 1fr;
+    max-width: 360px;
+    margin-inline: auto;
+  }
+}

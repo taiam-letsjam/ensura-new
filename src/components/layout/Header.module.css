@@ -1,0 +1,192 @@
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  width: 100%;
+  background: transparent;
+  transition: background var(--transition), box-shadow var(--transition),
+    border-color var(--transition);
+  border-bottom: 1px solid transparent;
+}
+
+/* Default (over hero): white text on the photo background */
+.header .navLink {
+  color: rgba(255, 255, 255, 0.92);
+}
+.header .navLink:hover {
+  color: #fff;
+}
+.header .burger {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.4);
+}
+.header .burgerBar,
+.header .burgerBar::before,
+.header .burgerBar::after {
+  background: #fff;
+}
+
+/* Scrolled: solid blue bar — logo, nav, burger stay white (same as top) */
+.scrolled {
+  background: var(--color-blue);
+  border-bottom-color: transparent;
+  box-shadow: none;
+}
+
+/* Header logo: exactly 56px tall, width auto/proportional (no transforms). */
+.brand img {
+  height: 56px;
+  width: auto;
+}
+
+/* Slightly reduce on small screens so it never crowds the menu button */
+@media (max-width: 600px) {
+  .brand img {
+    height: 48px;
+  }
+}
+
+.inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  height: var(--header-h);
+}
+
+.nav {
+  margin-inline: auto;
+}
+
+.navList {
+  display: flex;
+  align-items: center;
+  gap: clamp(1rem, 2.5vw, 2.25rem);
+}
+
+/* Body Small — navigation */
+.navLink {
+  font-family: var(--font-body);
+  font-weight: var(--w-regular);
+  font-size: var(--fs-body-sm);
+  line-height: var(--lh-body-sm);
+  color: var(--text-body);
+  transition: color var(--transition);
+}
+/* Active nav item — underline reads on both the dark hero and white scrolled bar */
+.navLink.active,
+.mobileLink.active {
+  text-decoration: underline;
+  text-underline-offset: 6px;
+  text-decoration-thickness: 2px;
+}
+.navLink:hover {
+  color: var(--color-blue);
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+/* Burger (mobile only) */
+.burger {
+  display: none;
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: #fff;
+  cursor: pointer;
+  position: relative;
+}
+
+.burgerBar,
+.burgerBar::before,
+.burgerBar::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  width: 20px;
+  height: 2px;
+  background: var(--text-strong);
+  border-radius: 2px;
+  transform: translateX(-50%);
+  transition: transform var(--transition), opacity var(--transition);
+}
+.burgerBar {
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+.burgerBar::before {
+  top: -6px;
+}
+.burgerBar::after {
+  top: 6px;
+}
+.burgerBar.open {
+  background: transparent;
+}
+.burgerBar.open::before {
+  top: 0;
+  transform: translateX(-50%) rotate(45deg);
+}
+.burgerBar.open::after {
+  top: 0;
+  transform: translateX(-50%) rotate(-45deg);
+}
+
+/* Mobile menu panel */
+.mobile {
+  display: none;
+}
+
+@media (max-width: 860px) {
+  .nav,
+  .actions {
+    display: none;
+  }
+  .burger {
+    display: block;
+  }
+
+  .mobile {
+    display: block;
+    position: fixed;
+    inset: var(--header-h) 0 0 0;
+    background: #fff;
+    padding: 2rem var(--container-pad) 3rem;
+    border-top: 1px solid var(--border);
+    transform: translateY(-8px);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity var(--transition), transform var(--transition);
+    overflow-y: auto;
+  }
+  .mobileOpen {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: auto;
+  }
+  .mobileList {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    margin-bottom: 1.75rem;
+  }
+  /* H5 — Roboto SemiBold 24px */
+  .mobileLink {
+    display: block;
+    padding: 0.85rem 0;
+    font-family: var(--font-body);
+    font-size: var(--fs-h5);
+    line-height: var(--lh-h5);
+    font-weight: var(--w-semibold);
+    border-bottom: 1px solid var(--border);
+  }
+  .mobileCta {
+    width: 100%;
+  }
+}

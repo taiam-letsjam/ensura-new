@@ -1,0 +1,111 @@
+/* Fills the global Container so its edges line up with the sections above */
+.wrap {
+  width: 100%;
+}
+
+/* Minimal card: light gray, no border, no shadow, soft rounded corners */
+.card {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: clamp(1.5rem, 4vw, 3rem);
+  margin: 0;
+  /* 80px on desktop, scaling down proportionally on tablet/mobile.
+     Height is not fixed — the card grows with its content. */
+  padding: clamp(32px, 8vw, 80px);
+  background: var(--color-light-gray);
+  border: none;
+  box-shadow: none;
+  border-radius: var(--radius-lg);
+}
+
+/* Circular avatar — 160×160 (matches the source for crisp 1:1 rendering) */
+.avatar {
+  width: 160px;
+  height: 160px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  /* 36px between each text element (eyebrow → quote → attribution) */
+  gap: 36px;
+}
+
+/* Eyebrow — Roboto SemiBold 16px, blue, title case, natural tracking */
+.eyebrow {
+  font-family: var(--font-body);
+  font-weight: var(--w-semibold);
+  font-size: 16px;
+  letter-spacing: normal;
+  color: var(--color-blue);
+}
+
+/* Quote — Roboto Regular, large (H4 scale), black */
+.quote {
+  font-family: var(--font-body);
+  font-weight: var(--w-regular);
+  font-size: var(--fs-h4);
+  line-height: var(--lh-h4);
+  color: var(--color-black);
+}
+
+.attribution {
+  font-size: var(--fs-body-sm);
+  line-height: var(--lh-body-sm);
+  color: var(--text-muted);
+}
+
+/* Navigation — outside the card, aligned bottom-right */
+.nav {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.6rem;
+  margin-top: 1.25rem;
+}
+
+.arrow {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--color-light-gray);
+  border: none;
+  outline: none;
+  box-shadow: none;
+  cursor: pointer;
+  transition: background var(--transition);
+}
+.arrow:hover {
+  background: #e7e9ec;
+}
+.arrow img {
+  display: block;
+  width: 20px;
+  height: 20px;
+}
+
+@media (max-width: 700px) {
+  .card {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    text-align: center;
+  }
+  .content {
+    align-items: center;
+  }
+}
+
+/* Scale the avatar down on small phones for balance */
+@media (max-width: 480px) {
+  .avatar {
+    width: 120px;
+    height: 120px;
+  }
+}

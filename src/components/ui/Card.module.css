@@ -1,0 +1,17 @@
+.card {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: clamp(1.5rem, 3vw, 2.25rem);
+  box-shadow: var(--shadow-sm);
+}
+
+.interactive {
+  transition: transform var(--transition), box-shadow var(--transition),
+    border-color var(--transition);
+}
+.interactive:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+  border-color: rgba(0, 82, 255, 0.35);
+}

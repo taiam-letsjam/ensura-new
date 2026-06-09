@@ -1,0 +1,78 @@
+/* ==========================================================================
+   Design tokens — Ensura
+   Edit brand values here; everything else references these variables.
+   ========================================================================== */
+:root {
+  /* Brand colors */
+  --color-blue: #0052ff;
+  --color-blue-dark: #003ecc;
+  --color-gray: #6c7784;
+  --color-black: #000000;
+  --color-light-gray: #f3f3f3;
+  --color-off-white: #f7f8f9;
+  --color-white: #ffffff;
+
+  /* Semantic */
+  --bg-page: var(--color-white);
+  --bg-subtle: var(--color-off-white);
+  --bg-muted: var(--color-light-gray);
+  --text-strong: var(--color-black);
+  --text-body: #2b3138;
+  --text-muted: var(--color-gray);
+  --border: #e4e7eb;
+  --accent: var(--color-blue);
+
+  /* ----- Typography system -------------------------------------------------
+     Families:
+       Roboto Condensed → H1–H3 (ExtraBold 800)
+       Roboto           → H4–H5 (SemiBold 600), body + UI (Regular 400)
+     Sizes use clamp() so they scale down on tablet/mobile but cap at the
+     exact desktop spec value.
+     -------------------------------------------------------------------------- */
+  --font-heading: 'Roboto Condensed', 'Arial Narrow', system-ui, sans-serif;
+  --font-body: 'Roboto', system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  /* Weights */
+  --w-extrabold: 800; /* ExtraBold — Roboto Condensed headings */
+  --w-semibold: 600; /* SemiBold  — H4/H5 */
+  --w-regular: 400; /* Regular   — body + UI */
+
+  /* Display / heading scale (desktop max = spec px) */
+  --fs-h1: clamp(2.5rem, 6.5vw, 72px); /* 40 → 72 */
+  --fs-h2: clamp(2.125rem, 5.4vw, 64px); /* 34 → 64 */
+  --fs-h3: clamp(1.75rem, 3.6vw, 44px); /* 28 → 44 */
+  --fs-h4: clamp(1.5rem, 2.6vw, 32px); /* 24 → 32 */
+  --fs-h5: clamp(1.25rem, 2vw, 24px); /* 20 → 24 */
+  --lh-heading: 1.05;
+  --lh-h4: 1.2;
+  --lh-h5: 1.25;
+
+  /* Body */
+  --fs-body-lg: 18px;
+  --lh-body-lg: 24px;
+  --fs-body-sm: 16px;
+  --lh-body-sm: 20px;
+
+  /* Supporting micro-label / overline (eyebrows, copyright) — not a body size */
+  --fs-label: 13px;
+
+  /* Spacing / layout */
+  --container-max: 1200px;
+  --container-pad: clamp(1.25rem, 4vw, 2.5rem);
+  --section-y: clamp(4rem, 9vw, 8rem);
+  --radius-sm: 8px;
+  --radius: 16px;
+  --radius-lg: 40px; /* global standard radius for large UI containers/cards */
+  --radius-pill: 999px;
+
+  /* Effects */
+  --shadow-sm: 0 1px 2px rgba(16, 24, 40, 0.06), 0 1px 3px rgba(16, 24, 40, 0.1);
+  --shadow-md: 0 8px 24px rgba(16, 24, 40, 0.08);
+  --shadow-lg: 0 24px 64px rgba(16, 24, 40, 0.12);
+  --shadow-blue: 0 12px 28px rgba(0, 82, 255, 0.28);
+
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --transition: 0.25s var(--ease);
+
+  --header-h: 88px;
+}

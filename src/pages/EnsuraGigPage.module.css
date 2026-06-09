@@ -1,0 +1,10 @@
+/* Provider logo shown inside the first card of each coverage section */
+.cardLogo {
+  display: block;
+  width: auto;
+  height: 32px;
+  margin-top: 20px;
+}
+.cardLogoCigna {
+  height: 40px;
+}

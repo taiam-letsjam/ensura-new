@@ -1,0 +1,54 @@
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  max-width: 720px;
+}
+
+.center {
+  align-items: center;
+  text-align: center;
+  margin-inline: auto;
+}
+
+/* Span the full container width (no 720px cap) — title only.
+   The supporting paragraph keeps the previous narrower, centered width. */
+.fullWidth {
+  max-width: 100%;
+}
+.fullWidth .subtitle {
+  max-width: 720px;
+  margin-inline: auto;
+}
+
+/* Eyebrow — Roboto SemiBold 16px, blue, title case, natural tracking */
+.eyebrow {
+  font-family: var(--font-body);
+  font-weight: var(--w-semibold);
+  font-size: 16px;
+  letter-spacing: normal;
+  text-transform: none;
+  color: var(--color-blue);
+}
+
+/* H2 — Roboto Condensed ExtraBold 64px (from element base) */
+.title {
+  text-transform: uppercase;
+}
+.title.accent {
+  color: var(--color-blue);
+}
+
+/* Body Large */
+.subtitle {
+  font-size: var(--fs-body-lg);
+  line-height: var(--lh-body-lg);
+  color: var(--text-muted);
+}
+/* Lead subtitle — Roboto SemiBold 24px */
+.subtitleLead {
+  font-family: var(--font-body);
+  font-weight: var(--w-semibold);
+  font-size: 24px;
+  line-height: 1.3;
+}

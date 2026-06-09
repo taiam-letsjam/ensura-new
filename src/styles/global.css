@@ -1,0 +1,189 @@
+@import './tokens.css';
+
+/* ---------- Reset ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: var(--fs-body-sm);
+  line-height: var(--lh-body-sm);
+  font-weight: var(--w-regular);
+  color: var(--text-body);
+  background: var(--bg-page);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ---------- Type scale ----------
+   H1–H3: Roboto Condensed ExtraBold · H4–H5: Roboto SemiBold.
+   Element defaults below; the .h1–.h5 utility classes apply the same styles
+   to any element so components can pick a level without changing markup. */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--text-strong);
+  letter-spacing: -0.01em;
+}
+
+.h1,
+h1 {
+  font-family: var(--font-heading);
+  font-weight: var(--w-extrabold);
+  font-size: var(--fs-h1);
+  line-height: var(--lh-heading);
+}
+.h2,
+h2 {
+  font-family: var(--font-heading);
+  font-weight: var(--w-extrabold);
+  font-size: var(--fs-h2);
+  line-height: var(--lh-heading);
+}
+.h3,
+h3 {
+  font-family: var(--font-heading);
+  font-weight: var(--w-extrabold);
+  font-size: var(--fs-h3);
+  line-height: var(--lh-heading);
+}
+.h4,
+h4 {
+  font-family: var(--font-body);
+  font-weight: var(--w-semibold);
+  font-size: var(--fs-h4);
+  line-height: var(--lh-h4);
+  letter-spacing: 0;
+}
+.h5,
+h5 {
+  font-family: var(--font-body);
+  font-weight: var(--w-semibold);
+  font-size: var(--fs-h5);
+  line-height: var(--lh-h5);
+  letter-spacing: 0;
+}
+
+/* Body roles */
+.body-lg {
+  font-size: var(--fs-body-lg);
+  line-height: var(--lh-body-lg);
+  font-weight: var(--w-regular);
+}
+.body-sm {
+  font-size: var(--fs-body-sm);
+  line-height: var(--lh-body-sm);
+  font-weight: var(--w-regular);
+}
+
+/* Eyebrow / section label — Roboto SemiBold 16px, title case, natural tracking */
+.overline {
+  font-family: var(--font-body);
+  font-weight: var(--w-semibold);
+  font-size: 16px;
+  letter-spacing: normal;
+  text-transform: none;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img,
+picture,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+button,
+input,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+:focus-visible {
+  outline: 3px solid var(--color-blue);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Respect reduced-motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+/* Visually hidden but accessible to screen readers */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Section rhythm helpers (shared vertical spacing) */
+.section {
+  padding-block: var(--section-y);
+}
+.section--subtle {
+  background: var(--bg-subtle);
+}
+.section--muted {
+  background: var(--bg-muted);
+}
+
+/* Skip link */
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -100%;
+  z-index: 1000;
+  background: var(--color-blue);
+  color: #fff;
+  padding: 0.6rem 1rem;
+  border-radius: var(--radius-sm);
+  transition: top var(--transition);
+}
+.skip-link:focus {
+  top: 1rem;
+}

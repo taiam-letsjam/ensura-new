@@ -1,0 +1,11 @@
+.logo {
+  display: inline-flex;
+  align-items: center;
+}
+
+/* Vector wordmark — fixed responsive height, width scales with aspect ratio */
+.img {
+  display: block;
+  height: clamp(26px, 3vw, 32px);
+  width: auto;
+}

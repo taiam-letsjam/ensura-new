@@ -1,0 +1,44 @@
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: var(--fs-body-lg);
+  line-height: var(--lh-body-lg);
+  color: var(--color-black);
+}
+.check {
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  margin-top: 1px;
+  border-radius: 50%;
+  background: var(--color-blue);
+}
+.check img {
+  display: block;
+  width: 24px;
+  height: 24px;
+}
+
+/* Two-line item (title + description) */
+.itemText {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.itemTitle {
+  font-weight: var(--w-semibold);
+  color: var(--color-black);
+}
+.itemDesc {
+  font-size: var(--fs-body-sm);
+  line-height: var(--lh-body-sm);
+  color: var(--text-muted);
+}

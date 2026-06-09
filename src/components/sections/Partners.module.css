@@ -1,0 +1,29 @@
+/* H5 — Roboto SemiBold 24px */
+.title {
+  font-family: var(--font-body);
+  font-weight: var(--w-semibold);
+  font-size: var(--fs-h5);
+  line-height: var(--lh-h5);
+  letter-spacing: 0;
+  margin-bottom: clamp(1.75rem, 4vw, 2.75rem);
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 24px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+/* Vector logos — uniform height, width scales by aspect ratio (stays sharp) */
+.logo img {
+  display: block;
+  height: 80px;
+  width: auto;
+}

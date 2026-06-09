@@ -1,0 +1,97 @@
+import type { KeyboardEvent } from 'react'
+import styles from './FlippableExampleCard.module.css'
+
+interface FlippableExampleCardProps {
+  /** Front image source */
+  image: string
+  imageAlt?: string
+  /** Front pill button label (e.g. "Sue's Example") */
+  label: string
+  /** Back checklist items */
+  items: string[]
+  /** Back button label */
+  closeLabel?: string
+  /** Controlled open/flipped state (managed by the parent) */
+  open: boolean
+  /** Toggle handler — parent enforces single-open behavior */
+  onToggle: () => void
+  /** Sizing class for the card (width / height) from the parent grid */
+  className?: string
+}
+
+/**
+ * Controlled image card that flips to a details card. The whole card is the
+ * toggle control (click anywhere; Enter/Space on keyboard). Front = image +
+ * pill label; back = checklist + Close. Pure CSS 3D flip, reduced-motion aware.
+ */
+export default function FlippableExampleCard({
+  image,
+  imageAlt = '',
+  label,
+  items,
+  closeLabel = 'Close',
+  open,
+  onToggle,
+  className = '',
+}: FlippableExampleCardProps) {
+  const onKeyDown = (e: KeyboardEvent<HTMLDivElement>) => {
+    if (e.key === 'Enter' || e.key === ' ' || e.key === 'Spacebar') {
+      e.preventDefault()
+      onToggle()
+    }
+  }
+
+  return (
+    <div
+      className={`${styles.scene} ${className}`}
+      role="button"
+      tabIndex={0}
+      aria-expanded={open}
+      aria-label={`${label}${open ? ' — hide covered incidents' : ' — show covered incidents'}`}
+      onClick={onToggle}
+      onKeyDown={onKeyDown}
+    >
+      <div className={`${styles.card} ${open ? styles.flipped : ''}`}>
+        {/* Front */}
+        <div className={`${styles.face} ${styles.front}`} aria-hidden={open}>
+          <img
+            className={styles.image}
+            src={image}
+            alt={imageAlt}
+            loading="lazy"
+            decoding="async"
+          />
+          <span className={styles.pill}>{label}</span>
+        </div>
+
+        {/* Back */}
+        <div className={`${styles.face} ${styles.back}`} aria-hidden={!open}>
+          <ul className={styles.list}>
+            {items.map((item) => (
+              <li key={item} className={styles.item}>
+                <svg
+                  className={styles.check}
+                  viewBox="0 0 24 24"
+                  width="18"
+                  height="18"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M5 13l4 4L19 7"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
+          <span className={styles.close}>{closeLabel}</span>
+        </div>
+      </div>
+    </div>
+  )
+}

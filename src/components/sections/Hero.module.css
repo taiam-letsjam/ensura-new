@@ -1,0 +1,90 @@
+.hero {
+  position: relative;
+  /* Fill the first viewport exactly. svh keeps it correct against mobile
+     browser UI; vh is the fallback for older browsers. */
+  min-height: 100vh;
+  min-height: 100svh;
+  margin: 0;
+  padding: 0;
+  border-radius: 0;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  isolation: isolate;
+  color: #fff;
+}
+
+/* Full-bleed responsive background image — always covers the hero, focal
+   point centered, no tiling, no fixed dimensions. */
+.bg {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
+/* On mobile, keep the full small-viewport height to avoid browser-UI gaps */
+@media (max-width: 600px) {
+  .hero {
+    min-height: 100vh;
+    min-height: 100svh;
+  }
+}
+
+/* Subtle dark overlay for text readability over the photo */
+.overlay {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(
+    180deg,
+    rgba(3, 18, 64, 0.5) 0%,
+    rgba(3, 18, 64, 0.32) 45%,
+    rgba(3, 18, 64, 0.62) 100%
+  );
+}
+
+.inner {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding-top: var(--header-h);
+}
+
+/* Content block below the H1 (paragraph + CTAs). Its margin-top sets the
+   spacing from the H1 (overridable per-hero via the titleGap prop). */
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.4rem;
+  margin-top: 1.4rem;
+}
+
+/* H1 — Roboto Condensed ExtraBold 72px (font/weight from element base) */
+.title {
+  font-size: var(--fs-h1);
+  text-transform: uppercase;
+  color: #fff;
+  text-shadow: 0 2px 24px rgba(0, 0, 0, 0.25);
+}
+
+/* Body Large */
+.lead {
+  font-size: var(--fs-body-lg);
+  line-height: var(--lh-body-lg);
+  color: rgba(255, 255, 255, 0.92);
+  max-width: 62ch;
+}
+
+.ctas {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 0.75rem;
+}
