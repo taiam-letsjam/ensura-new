@@ -10,7 +10,7 @@ export default function Partners() {
         <ul className={styles.row}>
           {partners.map((partner) => (
             <li key={partner.name} className={styles.logo}>
-              <img src={partner.logo} alt={partner.name} loading="lazy" decoding="async" />
+              <img src={partner.logo} alt={`${partner.name} logo`} loading="lazy" decoding="async" />
             </li>
           ))}
         </ul>

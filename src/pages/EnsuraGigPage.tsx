@@ -3,6 +3,8 @@ import CardGrid from '../components/sections/CardGrid'
 import type { GridCard } from '../components/sections/CardGrid'
 import SplitSection from '../components/sections/SplitSection'
 import Button from '../components/ui/Button'
+import { usePageMeta } from '../hooks/usePageMeta'
+import { brand } from '../data/site'
 import styles from './EnsuraGigPage.module.css'
 
 // Images
@@ -38,15 +40,15 @@ const blueCrossCards: GridCard[] = [
     title: 'Blue Cross/Blue Shield',
     body: (
       <>
-        National network with 2M+ healthcare providers nationwide
-        <img className={styles.cardLogo} src={bcbsLogo} alt="Blue Cross Blue Shield" />
+        Nationwide access through the national BlueCard® Program
+        <img className={styles.cardLogo} src={bcbsLogo} alt="Blue Cross Blue Shield logo" />
       </>
     ),
   },
   {
     icon: icon(epoPlansIcon),
     title: 'EPO Plans',
-    body: 'GigCare Value ($5,000 deductible), High ($7,350)',
+    body: 'Two GigCare EPO plans with $5,000 and $7,350 deductible options',
   },
   {
     icon: icon(ageBandsIcon),
@@ -61,11 +63,11 @@ const cignaCards: GridCard[] = [
     title: 'Cigna Network',
     body: (
       <>
-        1.3M+ healthcare providers nationwide
+        Nationwide access through Cigna’s national provider network
         <img
           className={`${styles.cardLogo} ${styles.cardLogoCigna}`}
           src={cignaLogo}
-          alt="Cigna"
+          alt="Cigna logo"
         />
       </>
     ),
@@ -73,22 +75,22 @@ const cignaCards: GridCard[] = [
   {
     icon: icon(coverageOptionsIcon),
     title: 'Coverage Options',
-    body: '8 deductible levels to fit different budgets',
+    body: 'An array of plan options to suit different deductible needs and budgets',
   },
   {
     icon: icon(savingsIcon),
     title: 'Savings',
-    body: 'Typically 20–40% less than ACA marketplace options',
+    body: 'Group-based pricing designed to help lower monthly out-of-pocket costs',
   },
   {
     icon: icon(coverageQualityIcon),
     title: 'Coverage Quality',
-    body: 'Fortune 500-level benefits for individuals',
+    body: 'Comprehensive coverage through a trusted national carrier',
   },
   {
     icon: icon(availabilityIcon),
     title: 'Availability',
-    body: 'All 50 states',
+    body: 'Nationwide access through national provider networks',
   },
 ]
 
@@ -114,7 +116,7 @@ const cignaEnrollment: GridCard[] = [
   {
     icon: icon(directApplicationIcon),
     title: 'Direct Application',
-    body: 'Complete enrollment in minutes',
+    body: 'A fast, simplified application process',
   },
   {
     icon: icon(supportIcon),
@@ -123,37 +125,48 @@ const cignaEnrollment: GridCard[] = [
   },
   {
     icon: icon(immediateCoverageIcon),
-    title: 'Immediate Coverage',
-    body: 'Fast approval and coverage start',
+    title: 'Coverage Start',
+    body: 'A clear, guided path from application to active coverage',
   },
 ]
 
 const blueCrossIncluded = [
-  '2+ million physicians nationwide within BlueCard Program',
+  'Nationwide provider access through the BlueCard® Program',
   '24/7 telemedicine for primary, urgent, and mental health care',
-  'Pharmaceutical advocacy through ScriptSourcing services',
+  'Pharmaceutical advocacy services through ScriptAide',
   'Live customer service (7:30 AM - 6:00 PM CST)',
+  '24/7 Member Portal access to ID cards, forms, and plan documents',
 ]
 
 const cignaIncluded = [
   'National PPO network with comprehensive provider access',
   'Group-based rates for individual plans',
-  'Short- and long-term income protection',
-  'Proactive dedicated claims support for large claims',
-  'Quick 3–5 minute application process',
+  'Flexible coverage choices to fit individual needs',
+  'Fast, simplified application process',
   'Dedicated enrollment support available',
 ]
 
 export default function EnsuraGigPage() {
+  usePageMeta(
+    'Health Benefits for Gig Workers & 1099 Contractors | Ensura Gig',
+    'Affordable nationwide health coverage for gig workers, 1099 contractors, freelancers, and independent teams through trusted national provider networks.',
+  )
+
   return (
     <>
       <Hero
         image={gigHero}
-        imageAlt="Ensura Gig health benefits for gig workers and small teams"
+        imageAlt="Gig workers and independent contractors accessing health benefits"
         title="Health Coverage for Gig Workers Independent Contractors & Small Teams"
-        subtitle="Nationwide Cigna Network built for gig workers, independent contractors, and small teams under 100 employees."
+        subtitle="National provider networks built for gig workers, independent contractors, and small teams under 100 employees."
         actions={
-          <Button href="#contact" size="lg" variant="secondary">
+          <Button
+            href={brand.calendlyUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            size="lg"
+            variant="secondary"
+          >
             Book a call
           </Button>
         }
@@ -176,7 +189,7 @@ export default function EnsuraGigPage() {
         title="What's Included"
         items={blueCrossIncluded}
         image={bcIncludedImg}
-        imageAlt="24/7 telemedicine consultation on a phone"
+        imageAlt="Telemedicine support for gig worker health benefits"
       />
 
       <CardGrid
@@ -208,7 +221,7 @@ export default function EnsuraGigPage() {
         title="What's Included"
         items={cignaIncluded}
         image={cignaIncludedImg}
-        imageAlt="Cigna, Blue Cross and Blue Shield healthcare coverage"
+        imageAlt="National healthcare network coverage for independent workers"
       />
 
       <CardGrid

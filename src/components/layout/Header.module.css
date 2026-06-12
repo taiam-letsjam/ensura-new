@@ -17,10 +17,6 @@
 .header .navLink:hover {
   color: #fff;
 }
-.header .burger {
-  background: rgba(255, 255, 255, 0.12);
-  border-color: rgba(255, 255, 255, 0.4);
-}
 .header .burgerBar,
 .header .burgerBar::before,
 .header .burgerBar::after {
@@ -74,9 +70,9 @@
   color: var(--text-body);
   transition: color var(--transition);
 }
-/* Active nav item — underline reads on both the dark hero and white scrolled bar */
-.navLink.active,
-.mobileLink.active {
+/* Active nav item — underline reads on both the dark hero and blue scrolled bar.
+   (Desktop only; mobile menu items stay visually consistent.) */
+.navLink.active {
   text-decoration: underline;
   text-underline-offset: 6px;
   text-decoration-thickness: 2px;
@@ -92,15 +88,22 @@
 }
 
 /* Burger (mobile only) */
+/* Bare hamburger — no container: just the 3 lines, with a 44px tap target */
 .burger {
   display: none;
   width: 44px;
   height: 44px;
-  border: 1px solid var(--border);
-  border-radius: var(--radius-sm);
-  background: #fff;
+  border: none;
+  border-radius: 0;
+  background: none;
+  box-shadow: none;
+  -webkit-tap-highlight-color: transparent;
   cursor: pointer;
   position: relative;
+  transition: opacity var(--transition);
+}
+.burger:active {
+  opacity: 0.6;
 }
 
 .burgerBar,
@@ -152,13 +155,14 @@
     display: block;
   }
 
+  /* Full-screen blue overlay (header bar above it also turns blue via
+     .menuOpenHeader, so the blue runs from the very top to the bottom). */
   .mobile {
     display: block;
     position: fixed;
     inset: var(--header-h) 0 0 0;
-    background: #fff;
-    padding: 2rem var(--container-pad) 3rem;
-    border-top: 1px solid var(--border);
+    background: var(--color-blue);
+    padding: 3rem var(--container-pad) 3rem;
     transform: translateY(-8px);
     opacity: 0;
     pointer-events: none;
@@ -173,20 +177,24 @@
   .mobileList {
     display: flex;
     flex-direction: column;
-    gap: 0.25rem;
-    margin-bottom: 1.75rem;
+    gap: 28px;
+    margin-bottom: 3rem;
   }
-  /* H5 — Roboto SemiBold 24px */
+  /* Large minimal links — Roboto Regular, white, 40px */
   .mobileLink {
     display: block;
-    padding: 0.85rem 0;
     font-family: var(--font-body);
-    font-size: var(--fs-h5);
-    line-height: var(--lh-h5);
-    font-weight: var(--w-semibold);
-    border-bottom: 1px solid var(--border);
+    font-weight: var(--w-regular);
+    font-size: 40px;
+    line-height: 1.1;
+    color: #fff;
   }
   .mobileCta {
     width: 100%;
   }
+}
+
+/* Header bar while the mobile menu is open — solid blue to match the overlay */
+.menuOpenHeader {
+  background: var(--color-blue);
 }

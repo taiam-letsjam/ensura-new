@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useLocation } from 'react-router-dom'
 import Container from '../ui/Container'
 import Button from '../ui/Button'
 import Logo from '../ui/Logo'
@@ -9,6 +9,7 @@ import styles from './Header.module.css'
 export default function Header() {
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
+  const { pathname } = useLocation()
 
   // Add a subtle elevation/background once the user scrolls past the hero top.
   useEffect(() => {
@@ -43,7 +44,15 @@ export default function Header() {
     ) : (
       <NavLink
         to={link.href}
-        onClick={onClick}
+        onClick={(e) => {
+          onClick?.()
+          // Already on this route → smooth-scroll to top instead of a no-op.
+          if (link.href === pathname) {
+            e.preventDefault()
+            const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+            window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' })
+          }
+        }}
         className={({ isActive }) =>
           `${linkClass} ${isActive ? activeClass : ''}`
         }
@@ -55,7 +64,9 @@ export default function Header() {
   return (
     <header
       id="top"
-      className={`${styles.header} ${scrolled ? styles.scrolled : ''}`}
+      className={`${styles.header} ${scrolled ? styles.scrolled : ''} ${
+        menuOpen ? styles.menuOpenHeader : ''
+      }`}
     >
       <Container className={styles.inner}>
         <Logo variant="white" className={styles.brand} />
@@ -71,7 +82,13 @@ export default function Header() {
         </nav>
 
         <div className={styles.actions}>
-          <Button href="#contact" size="md" variant="secondary">
+          <Button
+            href={brand.calendlyUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            size="md"
+            variant="secondary"
+          >
             {brand.cta}
           </Button>
         </div>
@@ -101,7 +118,15 @@ export default function Header() {
             </li>
           ))}
         </ul>
-        <Button href="#contact" size="lg" className={styles.mobileCta} onClick={closeMenu}>
+        <Button
+          href={brand.calendlyUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          size="lg"
+          variant="secondary"
+          className={styles.mobileCta}
+          onClick={closeMenu}
+        >
           {brand.cta}
         </Button>
       </div>

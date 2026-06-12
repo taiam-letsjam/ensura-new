@@ -62,3 +62,11 @@
   background: var(--color-blue);
   color: #fff;
 }
+
+/* Mobile: hide the section nav entirely (tablet/desktop only). It's
+   position:fixed, so hiding it leaves no gap in the page flow. */
+@media (max-width: 600px) {
+  .wrap {
+    display: none;
+  }
+}

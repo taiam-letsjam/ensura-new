@@ -35,13 +35,19 @@ export default function Footer() {
           </ul>
 
           <div className={styles.social}>
-            <a className={styles.socialLink} href="#" aria-label="Ensura on LinkedIn">
+            <a
+              className={styles.socialLink}
+              href="https://linkedin.com/company/ensura-group"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Ensura Group on LinkedIn"
+            >
               <img src={linkedinIcon} alt="" />
             </a>
             <a
               className={styles.socialLink}
-              href="mailto:hello@ensura.com"
-              aria-label="Email Ensura"
+              href="mailto:info@ensuragroup.com"
+              aria-label="Email Ensura Group"
             >
               <img src={mailIcon} alt="" />
             </a>

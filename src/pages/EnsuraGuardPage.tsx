@@ -11,7 +11,8 @@ import QuoteSection from '../components/sections/QuoteSection'
 import SectionHeader from '../components/ui/SectionHeader'
 import Container from '../components/ui/Container'
 import Button from '../components/ui/Button'
-import { testimonials } from '../data/site'
+import { usePageMeta } from '../hooks/usePageMeta'
+import { testimonials, brand } from '../data/site'
 import styles from './EnsuraGuardPage.module.css'
 
 import salimImage from '../assets/images/salin-t-quote.jpg'
@@ -37,7 +38,7 @@ const howItWorks: GridCard[] = [
     title: 'Prevent',
     body: 'Helping reduce risk before accidents happen.',
     image: imgPreventionWorker,
-    imageAlt: 'Worker using EnsuraGuard prevention support',
+    imageAlt: 'Worker receiving prevention support through EnsuraGuard',
     cta: (
       <Button href="#prevent" size="lg">
         Explore
@@ -48,7 +49,7 @@ const howItWorks: GridCard[] = [
     title: 'Protect',
     body: 'Financial support when covered incidents occur.',
     image: imgCoveredIncident,
-    imageAlt: 'Covered incident financial support',
+    imageAlt: 'Employee receiving covered incident support',
     cta: (
       <Button href="#protect" size="lg">
         Explore
@@ -59,7 +60,7 @@ const howItWorks: GridCard[] = [
     title: 'Support',
     body: '24/7 care access and ongoing employee assistance.',
     image: imgConcierge,
-    imageAlt: '24/7 concierge medicine support',
+    imageAlt: 'Doctor providing 24/7 virtual concierge medicine support',
     cta: (
       <Button href="#support" size="lg">
         Explore
@@ -73,19 +74,19 @@ const preventInjuries: GridCard[] = [
     title: 'Prevention Modules',
     body: 'Educational resources on workplace safety, ergonomics, and avoidable injuries.',
     image: imgPreventionWorker,
-    imageAlt: 'Worker using EnsuraGuard prevention support',
+    imageAlt: 'Worker receiving prevention support through EnsuraGuard',
   },
   {
     title: 'Eligible Wellness Support',
     body: 'Employees can access covered benefits focused on qualified prevention and care services.',
     image: imgWellnessSupport,
-    imageAlt: 'Wellness support benefits',
+    imageAlt: 'Wellness support session for employee injury prevention',
   },
   {
     title: 'Everyday Protection',
     body: 'Support designed for both workplace and everyday life situations.',
     image: imgSafetyTraining,
-    imageAlt: 'Workplace safety training',
+    imageAlt: 'Workplace safety training for injury prevention',
   },
 ]
 
@@ -93,21 +94,68 @@ const preventInjuries: GridCard[] = [
 // No specific image filenames were given for these, so existing person photos
 // are mapped to the example labels (4th "Example" is a stand-in).
 const financialExamples = [
-  { label: 'Matthew’s Example', image: imgEverydayProtectionPlain, alt: 'Everyday protection example' },
-  { label: 'Sue’s Example', image: imgCoveredIncident, alt: 'Covered incident support example' },
-  { label: 'Brian’s Example', image: imgEverydayProtection, alt: 'Everyday injury protection example' },
-  { label: 'Amira’s Example', image: imgRecoveryCare, alt: 'Recovery care support example' },
-]
-
-// Checklist shown on the back of each flipped example card
-const protectionIncidentList = [
-  'Air Ambulance',
-  'Urgent Care',
-  'X-Ray',
-  'Conscious Sedation',
-  'Ligament Surgery',
-  'Pain Management',
-  'Prescription Drug',
+  {
+    label: 'Matthew’s Example',
+    image: imgEverydayProtectionPlain,
+    alt: 'Everyday workforce protection example',
+    items: [
+      { label: 'Air Ambulance', price: '$2,500' },
+      { label: 'Urgent Care', price: '$200' },
+      { label: 'X-Ray', price: '$300' },
+      { label: 'Conscious Sedation', price: '$250' },
+      { label: 'Ligament Surgery', price: '$250' },
+      { label: 'Pain Management', price: '$1,250' },
+      { label: 'Prescription Drug', price: '$200' },
+    ],
+    total: '$4,950',
+  },
+  {
+    label: 'Sue’s Example',
+    image: imgCoveredIncident,
+    alt: 'Employee receiving covered incident support',
+    items: [
+      { label: 'Ground Ambulance', price: '$500' },
+      { label: 'Emergency Room', price: '$500' },
+      { label: 'ICU Admission', price: '$2,500' },
+      { label: 'Open Fracture', price: '$5,000' },
+      { label: 'ICU Confinement', price: '$500' },
+      { label: 'General Anesthesia', price: '$500' },
+      { label: 'Traumatic Brain Injury', price: '$500' },
+      { label: 'Medical Device', price: '$250' },
+    ],
+    total: '$10,250',
+  },
+  {
+    label: 'Brian’s Example',
+    image: imgEverydayProtection,
+    alt: 'Employee using crutches after an everyday injury',
+    items: [
+      { label: 'Urgent Care', price: '$200' },
+      { label: 'X-Ray', price: '$100' },
+      { label: 'Surgical Repair', price: '$2,500' },
+      { label: 'Pain Management', price: '$250' },
+      { label: 'Prosthesis', price: '$2,500' },
+      { label: 'Open Fracture', price: '$5,000' },
+      { label: 'Prescription Drug', price: '$200' },
+    ],
+    total: '$10,750',
+  },
+  {
+    label: 'Amira’s Example',
+    image: imgRecoveryCare,
+    alt: 'Employee recovery care support example',
+    items: [
+      { label: 'Hospital Admission', price: '$2,500' },
+      { label: 'Diagnostic Testing', price: '$500' },
+      { label: 'X-Ray', price: '$300' },
+      { label: 'Blood Test', price: '$600' },
+      { label: 'General Anesthesia', price: '$500' },
+      { label: 'Hernia Surgery', price: '$1,000' },
+      { label: 'Hospital Confinement', price: '$100' },
+      { label: 'Prescription Drug', price: '$200' },
+    ],
+    total: '$5,700',
+  },
 ]
 
 // Bottom row: text-only cards
@@ -131,25 +179,25 @@ const ongoingSupport: GridCard[] = [
     title: '24/7 Virtual Concierge Medicine',
     body: 'Access to care anytime through telehealth support.',
     image: imgConcierge,
-    imageAlt: '24/7 virtual concierge medicine',
+    imageAlt: 'Doctor providing 24/7 virtual concierge medicine support',
   },
   {
     title: 'Prescription Support',
     body: 'Help employees reduce medication costs.',
     image: imgPrescription,
-    imageAlt: 'Prescription support',
+    imageAlt: 'Pharmacy prescription support for employees',
   },
   {
     title: 'Care Coordination',
     body: 'Guidance for treatment, appointments, and ongoing support.',
     image: imgVirtualCare,
-    imageAlt: 'Care coordination support',
+    imageAlt: 'Healthcare professional providing virtual care support',
   },
   {
     title: 'Mental Health Access',
     body: 'Support resources designed for everyday wellbeing.',
     image: imgMentalHealth,
-    imageAlt: 'Mental health support',
+    imageAlt: 'Mental health support for employee wellbeing',
   },
 ]
 
@@ -174,6 +222,11 @@ const builtDifferently: ChecklistItem[] = [
 ]
 
 export default function EnsuraGuardPage() {
+  usePageMeta(
+    'Workforce Protection & Supplemental Benefits | EnsuraGuard™',
+    'Preventive workforce protection and supplemental benefits designed to reduce costs, improve employee support, and strengthen workforce wellbeing.',
+  )
+
   const quote = testimonials[0]
   // Only one Example card open at a time (null = all closed)
   const [openExample, setOpenExample] = useState<number | null>(null)
@@ -182,16 +235,28 @@ export default function EnsuraGuardPage() {
     <>
       <Hero
         image={heroImage}
-        imageAlt="EnsuraGuard workplace protection for employees"
+        imageAlt="EnsuraGuard workforce protection team in action"
         titleGap="320px"
         title="Protect Your People. Strengthen Your Bottom Line."
         subtitle="EnsuraGuard™ helps reduce costs and improve employee care through prevention, protection, and ongoing support."
         actions={
           <>
-            <Button href="#contact" size="lg" variant="secondary">
+            <Button
+              href={brand.calendlyUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              size="lg"
+              variant="secondary"
+            >
               Book a call
             </Button>
-            <Button href="#contact" size="lg" variant="primary">
+            <Button
+              href={brand.calendlyUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              size="lg"
+              variant="primary"
+            >
               Get your savings analysis
             </Button>
           </>
@@ -262,7 +327,8 @@ export default function EnsuraGuardPage() {
                 image={ex.image}
                 imageAlt={ex.alt}
                 label={ex.label}
-                items={protectionIncidentList}
+                items={ex.items}
+                total={ex.total}
                 open={openExample === i}
                 onToggle={() => setOpenExample(openExample === i ? null : i)}
               />
@@ -319,7 +385,7 @@ export default function EnsuraGuardPage() {
             <div className={styles.builtMedia}>
               <img
                 src={builtDifferentlyImage}
-                alt="EnsuraGuard workforce protection team"
+                alt="EnsuraGuard team representing prevention, protection, and support"
                 loading="lazy"
                 decoding="async"
               />
@@ -336,7 +402,7 @@ export default function EnsuraGuardPage() {
         author={quote.author}
         authorTitle={quote.role}
         image={salimImage}
-        imageAlt={`${quote.author} portrait`}
+        imageAlt="Salim T. client testimonial portrait"
       />
 
       {/* ---------- Final CTA ---------- */}
@@ -353,10 +419,22 @@ export default function EnsuraGuardPage() {
             Streamlined solutions to fit each unique employer.
           </p>
           <div className={styles.ctaButtons}>
-            <Button href="#contact" size="lg" variant="outline">
+            <Button
+              href={brand.calendlyUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              size="lg"
+              variant="outline"
+            >
               Get Your Savings Analysis
             </Button>
-            <Button href="#contact" size="lg" variant="primary">
+            <Button
+              href={brand.calendlyUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              size="lg"
+              variant="primary"
+            >
               Book a Call
             </Button>
           </div>

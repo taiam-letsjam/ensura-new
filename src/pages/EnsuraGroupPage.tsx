@@ -6,6 +6,7 @@ import type { ChecklistItem } from '../components/sections/SplitSection'
 import SectionHeader from '../components/ui/SectionHeader'
 import Container from '../components/ui/Container'
 import Button from '../components/ui/Button'
+import { usePageMeta } from '../hooks/usePageMeta'
 import styles from './EnsuraGroupPage.module.css'
 
 // Images
@@ -74,11 +75,16 @@ const voluntaryBenefits: ChecklistItem[] = [
 ]
 
 export default function EnsuraGroupPage() {
+  usePageMeta(
+    'Group Health Insurance & Employee Benefits | Ensura Group',
+    'Flexible group health insurance solutions including fully insured, self-funded, and level-funded employee benefit plans for growing businesses.',
+  )
+
   return (
     <>
       <Hero
         image={groupHero}
-        imageAlt="Ensura Group benefits team from trusted carriers and national networks"
+        imageAlt="Employees receiving comprehensive group healthcare benefits"
         title="Comprehensive Benefits From Trusted Carriers and National Networks"
         subtitle="Fully insured, self-funded, and level-funded options for companies with 100+ employees, from traditional group medical plans to innovative voluntary benefits."
         actions={
@@ -121,7 +127,7 @@ export default function EnsuraGroupPage() {
         body={<strong>Complete Employee Benefit Package</strong>}
         items={voluntaryBenefits}
         image={doctorImage}
-        imageAlt="Ensura doctor providing voluntary and ancillary health benefits"
+        imageAlt="Doctor consulting with patient about employee health benefits"
       />
 
       {/* ---------- Upgrade Your Benefits CTA ---------- */}

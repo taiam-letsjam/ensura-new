@@ -9,12 +9,17 @@ export default function Mission() {
       id="mission"
       imagePosition="right"
       image={missionImage}
-      imageAlt="Ensura making accessible health solutions for everyone"
+      imageAlt="Ensura team members representing accessible healthcare solutions"
       eyebrow="Our Mission"
       title="Accessible Health Solutions"
       body="We believe in making health services accessible and affordable while helping businesses streamline operations and reduce costs. With a commitment to integrity and excellence, we strive to create a healthier and more equitable future for all."
       cta={
-        <Button href="#contact" size="lg">
+        <Button
+          href={brand.calendlyUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          size="lg"
+        >
           {brand.cta}
         </Button>
       }

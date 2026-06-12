@@ -19,7 +19,7 @@ export default function ExecutiveTeam() {
               <img
                 className={styles.photo}
                 src={member.image}
-                alt={`${member.name}, ${member.title}`}
+                alt={member.name}
                 width={366}
                 height={458}
                 loading="lazy"
@@ -30,6 +30,8 @@ export default function ExecutiveTeam() {
               <a
                 className={styles.linkedin}
                 href={member.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
                 aria-label={`${member.name} on LinkedIn`}
               >
                 <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">

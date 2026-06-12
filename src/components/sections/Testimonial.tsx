@@ -13,7 +13,7 @@ export default function Testimonial() {
       author={item.author}
       authorTitle={item.role}
       image={salimImage}
-      imageAlt={`${item.author} portrait`}
+      imageAlt="Salim T. client testimonial portrait"
     />
   )
 }

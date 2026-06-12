@@ -25,7 +25,7 @@ export const nav: NavLink[] = [
   { label: 'Ensura Guard', href: '/guard' },
   { label: 'Ensura Gig', href: '/ensura-gig' },
   { label: 'Ensura Group', href: '/group' },
-  { label: 'About', href: '/#about' },
+  { label: 'About', href: '/' },
 ]
 
 export interface Solution {
@@ -71,12 +71,12 @@ export interface TeamMember {
 }
 
 export const team: TeamMember[] = [
-  { name: 'Brian Arellanes', title: 'Cofounder & Managing Member', linkedin: '#', image: brianArellanes },
-  { name: 'Sonny Sanchez', title: 'Cofounder & Managing Member', linkedin: '#', image: sonnySanchez },
-  { name: 'Matt Whitmarsh', title: 'Vice President, Partnerships', linkedin: '#', image: mattWhitmarsh },
-  { name: 'Austin Holden', title: 'Director, Insurance Products', linkedin: '#', image: austinHolden },
-  { name: 'Leslie Jordan', title: 'Director & Executive Liaison', linkedin: '#', image: leslieJordan },
-  { name: 'Jessikah Contreras', title: 'Director, Client Success', linkedin: '#', image: jessikahContreras },
+  { name: 'Brian Arellanes', title: 'Cofounder & Managing Member', linkedin: 'https://www.linkedin.com/in/brianarellanes/', image: brianArellanes },
+  { name: 'Sonny Sanchez', title: 'Cofounder & Managing Member', linkedin: 'https://www.linkedin.com/in/sonny-sanchez-a30213113/', image: sonnySanchez },
+  { name: 'Matt Whitmarsh', title: 'Vice President, Partnerships', linkedin: 'https://www.linkedin.com/in/matt-whitmarsh/', image: mattWhitmarsh },
+  { name: 'Austin Holden', title: 'Director, Insurance Products', linkedin: 'https://www.linkedin.com/in/austinalvaholden/', image: austinHolden },
+  { name: 'Leslie Jordan', title: 'Director & Executive Liaison', linkedin: 'https://www.linkedin.com/in/leslie-edvalson-jordan/', image: leslieJordan },
+  { name: 'Jessikah Contreras', title: 'Director, Client Success', linkedin: 'https://www.linkedin.com/in/jessikah-contreras-325590369/', image: jessikahContreras },
 ]
 
 export interface Testimonial {
@@ -119,4 +119,6 @@ export const brand = {
   ctaSecondary: 'Get your savings analysis',
   license: 'License No: 6016880',
   year: 2025,
+  /** Booking link for the "Book a Call" / "Get Your Savings Analysis" CTAs */
+  calendlyUrl: 'https://calendly.com/d/cwzp-9nm-vwm/ensura-group',
 }

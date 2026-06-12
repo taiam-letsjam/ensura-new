@@ -1,14 +1,21 @@
 import type { KeyboardEvent } from 'react'
 import styles from './FlippableExampleCard.module.css'
 
+export interface PriceLine {
+  label: string
+  price: string
+}
+
 interface FlippableExampleCardProps {
   /** Front image source */
   image: string
   imageAlt?: string
   /** Front pill button label (e.g. "Sue's Example") */
   label: string
-  /** Back checklist items */
-  items: string[]
+  /** Back line items (procedure + price) */
+  items: PriceLine[]
+  /** Back total (e.g. "$4,950") */
+  total?: string
   /** Back button label */
   closeLabel?: string
   /** Controlled open/flipped state (managed by the parent) */
@@ -21,14 +28,15 @@ interface FlippableExampleCardProps {
 
 /**
  * Controlled image card that flips to a details card. The whole card is the
- * toggle control (click anywhere; Enter/Space on keyboard). Front = image +
- * pill label; back = checklist + Close. Pure CSS 3D flip, reduced-motion aware.
+ * toggle control (click anywhere; Enter/Space). Front = image + pill label;
+ * back = two-column price table with a Total. Pure CSS 3D flip, reduced-motion aware.
  */
 export default function FlippableExampleCard({
   image,
   imageAlt = '',
   label,
   items,
+  total,
   closeLabel = 'Close',
   open,
   onToggle,
@@ -47,7 +55,7 @@ export default function FlippableExampleCard({
       role="button"
       tabIndex={0}
       aria-expanded={open}
-      aria-label={`${label}${open ? ' — hide covered incidents' : ' — show covered incidents'}`}
+      aria-label={`${label}${open ? ' — hide covered costs' : ' — show covered costs'}`}
       onClick={onToggle}
       onKeyDown={onKeyDown}
     >
@@ -66,29 +74,28 @@ export default function FlippableExampleCard({
 
         {/* Back */}
         <div className={`${styles.face} ${styles.back}`} aria-hidden={!open}>
-          <ul className={styles.list}>
-            {items.map((item) => (
-              <li key={item} className={styles.item}>
-                <svg
-                  className={styles.check}
-                  viewBox="0 0 24 24"
-                  width="18"
-                  height="18"
-                  aria-hidden="true"
-                >
-                  <path
-                    d="M5 13l4 4L19 7"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-                <span>{item}</span>
-              </li>
+          <div className={styles.lines}>
+            {items.map((row) => (
+              <div key={row.label} className={styles.row}>
+                <span className={styles.itemName}>{row.label}</span>
+                <span className={styles.itemPrice}>{row.price}</span>
+              </div>
             ))}
-          </ul>
+          </div>
+
+          {total && (
+            <div className={styles.totalRow}>
+              <span>Total</span>
+              <span>{total}</span>
+            </div>
+          )}
+
+          <p className={styles.disclaimer}>
+            Fictional example.
+            <br />
+            Individual results may vary.
+          </p>
+
           <span className={styles.close}>{closeLabel}</span>
         </div>
       </div>

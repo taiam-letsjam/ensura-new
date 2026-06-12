@@ -10,12 +10,17 @@ export default function About() {
       background="default"
       imagePosition="left"
       image={aboutImage}
-      imageAlt="Ensura team delivering healthcare benefit solutions"
+      imageAlt="Healthcare professional supporting accessible employee benefits"
       eyebrow="About Ensura Insurance Solutions"
       title="Dedicated to redefining healthcare with a commitment to affordability, accessibility, and excellence."
       body="At Ensura, we are a team of experienced professionals passionate about enhancing health and financial stability through effective benefits administration, operational efficiency, and compliance. Our expertise allows us to deliver tailored solutions that empower individuals and organizations alike."
       cta={
-        <Button href="#contact" size="lg">
+        <Button
+          href={brand.calendlyUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          size="lg"
+        >
           {brand.cta}
         </Button>
       }
